@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.example.entity.base.BaseEntity;
+import org.example.entity.person.Student;
+import org.example.entity.person.Teacher;
 
 import java.time.LocalDateTime;
 import java.util.List;

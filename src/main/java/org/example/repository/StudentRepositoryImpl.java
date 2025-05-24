@@ -2,7 +2,7 @@ package org.example.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
-import org.example.entity.Student;
+import org.example.entity.person.Student;
 import org.example.repository.base.BaseRepositoryImpl;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.example.entity;
+package org.example.entity.person;
 
 
 import jakarta.persistence.Entity;
@@ -7,6 +7,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
+import org.example.entity.Course;
 
 import java.util.List;
 

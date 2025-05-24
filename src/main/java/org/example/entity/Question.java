@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 import org.example.entity.base.BaseEntity;
+import org.example.entity.enumeration.QustionType;
 
 import java.util.List;
 

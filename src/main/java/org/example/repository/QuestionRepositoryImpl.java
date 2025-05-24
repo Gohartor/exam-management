@@ -3,7 +3,7 @@ package org.example.repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.example.entity.Question;
-import org.example.entity.QustionType;
+import org.example.entity.enumeration.QustionType;
 import org.example.repository.base.BaseRepositoryImpl;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public class QuestionRepositoryImpl
         extends BaseRepositoryImpl<Question, Long>
         implements QuestionRepository {
 
-    protected QuestionRepositoryImpl(EntityManager em, Class<Question> clazz) {
+    public QuestionRepositoryImpl(EntityManager em, Class<Question> clazz) {
         super(em, clazz);
     }
 
