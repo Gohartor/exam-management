@@ -1,9 +1,10 @@
-package org.example.repository;
+package org.example.repository.implement;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.example.entity.Question;
 import org.example.entity.enumeration.QustionType;
+import org.example.repository.QuestionRepository;
 import org.example.repository.base.BaseRepositoryImpl;
 
 import java.util.List;

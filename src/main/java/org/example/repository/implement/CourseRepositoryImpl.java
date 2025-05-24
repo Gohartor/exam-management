@@ -1,7 +1,8 @@
-package org.example.repository;
+package org.example.repository.implement;
 
 import jakarta.persistence.EntityManager;
 import org.example.entity.Course;
+import org.example.repository.CourseRepository;
 import org.example.repository.base.BaseRepositoryImpl;
 
 public class CourseRepositoryImpl

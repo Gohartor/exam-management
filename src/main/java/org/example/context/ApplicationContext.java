@@ -11,6 +11,7 @@ import org.example.entity.person.Admin;
 import org.example.entity.person.Student;
 import org.example.entity.person.Teacher;
 import org.example.repository.*;
+import org.example.repository.implement.*;
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 
 import java.util.Objects;
@@ -68,7 +69,6 @@ public class ApplicationContext {
     }
 
 
-
     private AdminRepository adminRepository;
 
     public AdminRepository getProvinceRepository() {
@@ -77,7 +77,6 @@ public class ApplicationContext {
         }
         return adminRepository;
     }
-
 
 
     private CourseRepository courseRepository;
@@ -89,6 +88,7 @@ public class ApplicationContext {
         return courseRepository;
     }
 
+
     private ExamRepository examRepository;
 
     public ExamRepository getExamRepository() {
@@ -97,6 +97,7 @@ public class ApplicationContext {
         }
         return examRepository;
     }
+
 
     private OptionRepository optionRepository;
 
@@ -107,6 +108,7 @@ public class ApplicationContext {
         return optionRepository;
     }
 
+
     private QuestionBankRepository questionBankRepository;
 
     public QuestionBankRepository getQuestionBankRepository() {
@@ -115,6 +117,7 @@ public class ApplicationContext {
         }
         return questionBankRepository;
     }
+
 
     private QuestionRepository questionRepository;
 
@@ -125,6 +128,7 @@ public class ApplicationContext {
         return questionRepository;
     }
 
+
     private StudentRepository studentRepository;
 
     public StudentRepository getStudentRepository() {
@@ -133,6 +137,8 @@ public class ApplicationContext {
         }
         return studentRepository;
     }
+
+
 
     private TeacherRepository teacherRepository;
 
