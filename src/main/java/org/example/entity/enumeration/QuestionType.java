@@ -1,5 +1,5 @@
 package org.example.entity.enumeration;
 
-public enum QustionType {
+public enum QuestionType {
     ANATOMICAL,TEST
 }

@@ -3,6 +3,9 @@ package org.example.entity.person;
 import jakarta.persistence.Entity;
 import lombok.*;
 import org.example.entity.base.BaseEntity;
+import org.example.entity.enumeration.PersonStatus;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -10,7 +13,9 @@ import org.example.entity.base.BaseEntity;
 @Getter
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
-public class Admin extends BaseEntity {
-    
+@AllArgsConstructor
+public class Admin extends Person {
+
+
+
 }

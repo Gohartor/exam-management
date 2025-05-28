@@ -7,12 +7,14 @@ import lombok.*;
 import org.example.entity.enumeration.PersonStatus;
 import org.example.entity.base.BaseEntity;
 
+
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public class Person extends BaseEntity {
 
     @NotBlank
@@ -26,9 +28,11 @@ public class Person extends BaseEntity {
     @Size(min = 8, max = 50)
     private String userName;
 
+
     @NotBlank
     @Size(min = 8)
     private String password;
+
 
     @NotBlank
     @Enumerated(EnumType.STRING)
