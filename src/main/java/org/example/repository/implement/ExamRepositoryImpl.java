@@ -47,17 +47,6 @@ implements ExamRepository {
         return em.createQuery(query).getResultList();
     }
 
-    @Override
-    public List<Exam> findByStartAndEndDate(int from, int to) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Exam> query = cb.createQuery(Exam.class);
-        Root<Exam> root = query.from(Exam.class);
-        Predicate afterStart = cb.greaterThanOrEqualTo(root.get("startDate"), from);
-        Predicate beforeEnd = cb.lessThanOrEqualTo(root.get("endDate"), to);
-        query.select(root).where(cb.and(afterStart, beforeEnd));
-        return em.createQuery(query).getResultList();
-    }
-
 
 
 

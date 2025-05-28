@@ -1,10 +1,10 @@
-package org.example.service;
+package org.example.service.impl;
 
 import org.example.entity.Exam;
 import org.example.repository.ExamRepository;
+import org.example.service.ExamService;
 import org.example.service.base.BaseServiceImpl;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class ExamServiceImpl

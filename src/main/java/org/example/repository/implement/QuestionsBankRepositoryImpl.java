@@ -6,16 +6,16 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 import org.example.entity.QuestionsBank;
-import org.example.repository.QuestionBankRepository;
+import org.example.repository.QuestionsBankRepository;
 import org.example.repository.base.BaseRepositoryImpl;
 
 import java.util.List;
 
-public class QuestionBankRepositoryImpl
+public class QuestionsBankRepositoryImpl
         extends BaseRepositoryImpl<QuestionsBank, Long>
-        implements QuestionBankRepository {
+        implements QuestionsBankRepository {
 
-    public QuestionBankRepositoryImpl(EntityManager em, Class<QuestionsBank> clazz) {
+    public QuestionsBankRepositoryImpl(EntityManager em, Class<QuestionsBank> clazz) {
         super(em, clazz);
     }
 

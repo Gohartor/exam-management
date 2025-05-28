@@ -109,13 +109,13 @@ public class ApplicationContext {
     }
 
 
-    private QuestionBankRepository questionBankRepository;
+    private QuestionsBankRepository questionsBankRepository;
 
-    public QuestionBankRepository getQuestionBankRepository() {
-        if (Objects.isNull(questionBankRepository)) {
-            questionBankRepository = new QuestionBankRepositoryImpl(getEntityManager(), QuestionsBank.class);
+    public QuestionsBankRepository getQuestionBankRepository() {
+        if (Objects.isNull(questionsBankRepository)) {
+            questionsBankRepository = new QuestionsBankRepositoryImpl(getEntityManager(), QuestionsBank.class);
         }
-        return questionBankRepository;
+        return questionsBankRepository;
     }
 
 

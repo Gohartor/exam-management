@@ -14,4 +14,3 @@ public interface OptionRepository
 
     List<Option> searchByText(String keyword);
 }
-

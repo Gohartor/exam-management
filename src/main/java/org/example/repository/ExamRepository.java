@@ -14,7 +14,5 @@ public interface ExamRepository
 
     List<Exam> searchByTitle(String keyword);
 
-    List<Exam> findByStartAndEndDate(int from, int to);
-
     List<Exam> findActiveExamsForStudent(Long studentId, int currentTime);
 }

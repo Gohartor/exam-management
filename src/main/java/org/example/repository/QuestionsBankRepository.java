@@ -5,7 +5,7 @@ import org.example.repository.base.BaseRepository;
 
 import java.util.List;
 
-public interface QuestionBankRepository
+public interface QuestionsBankRepository
         extends BaseRepository<QuestionsBank, Long> {
 
     QuestionsBank findWithQuestions(Long bankId);
