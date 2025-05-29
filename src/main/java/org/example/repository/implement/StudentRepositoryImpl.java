@@ -2,6 +2,7 @@ package org.example.repository.implement;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
+import org.example.entity.enumeration.PersonStatus;
 import org.example.entity.person.Student;
 import org.example.repository.StudentRepository;
 import org.example.repository.base.BaseRepositoryImpl;
@@ -40,17 +41,44 @@ public class StudentRepositoryImpl
     }
 
     @Override
-    public List<Student> searchByNameOrStudentNumber(String keyword) {
+    public List<Student> searchByNameOrStudentId(String keyword) {
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Student> query = cb.createQuery(Student.class);
         Root<Student> root = query.from(Student.class);
 
         Predicate byName = cb.like(root.get("name"), "%" + keyword + "%");
-        Predicate byNumber = cb.like(root.get("studentNumber"), "%" + keyword + "%");
+        Predicate byNumber = cb.like(root.get("student_id"), "%" + keyword + "%");
         query.select(root).where(cb.or(byName, byNumber));
         return em.createQuery(query).getResultList();
 
+    }
+
+    @Override
+    public List<Student> findByFirstName(String firstName) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Student> cq = cb.createQuery(Student.class);
+        Root<Student> student = cq.from(Student.class);
+        cq.where(cb.equal(student.get("firstName"), firstName));
+        return em.createQuery(cq).getResultList();
+    }
+
+    @Override
+    public List<Student> findByLastName(String lastName) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Student> cq = cb.createQuery(Student.class);
+        Root<Student> student = cq.from(Student.class);
+        cq.where(cb.equal(student.get("lastName"), lastName));
+        return em.createQuery(cq).getResultList();
+    }
+
+    @Override
+    public List<Student> findByStatus(PersonStatus status) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Student> cq = cb.createQuery(Student.class);
+        Root<Student> student = cq.from(Student.class);
+        cq.where(cb.equal(student.get("status"), status));
+        return em.createQuery(cq).getResultList();
     }
 
 

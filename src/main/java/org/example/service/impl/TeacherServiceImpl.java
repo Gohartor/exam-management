@@ -1,8 +1,12 @@
 package org.example.service.impl;
 
+import jakarta.persistence.EntityManager;
+import org.example.context.ApplicationContext;
 import org.example.entity.Course;
 import org.example.entity.Exam;
 import org.example.entity.Question;
+import org.example.entity.enumeration.PersonStatus;
+import org.example.entity.person.Student;
 import org.example.entity.person.Teacher;
 import org.example.repository.TeacherRepository;
 import org.example.service.TeacherService;
@@ -24,8 +28,42 @@ public class TeacherServiceImpl
     }
 
     @Override
+    public List<Teacher> searchByNameOrTeacherId(String keyword) {
+        return repository.searchByNameOrTeacherId(keyword);
+    }
+
+    @Override
+    public List<Teacher> findByStatus(PersonStatus status) {
+        return repository.findByStatus(status);
+    }
+
+    @Override
+    public List<Teacher> findByFirstName(String firstName) {
+        return repository.findByFirstName(firstName);
+    }
+
+    @Override
+    public List<Teacher> findByLastName(String lastName) {
+        return repository.findByLastName(lastName);
+    }
+
+    @Override
     public List<Teacher> searchByNameOrCode(String keyword) {
-        return repository.searchByNameOrTeacherCode(keyword);
+        return repository.searchByNameOrTeacherId(keyword);
+    }
+
+    public void register(String firstName, String lastName, String userName, String password) {
+        EntityManager em = ApplicationContext.getInstance().getEntityManager();
+        Student student = new Student();
+        student.setFirstName(firstName);
+        student.setLastName(lastName);
+        student.setUserName(userName);
+        student.setPassword(password);
+        student.setStatus(PersonStatus.PENDING);
+
+        em.getTransaction().begin();
+        em.persist(student);
+        em.getTransaction().commit();
     }
 
     @Override

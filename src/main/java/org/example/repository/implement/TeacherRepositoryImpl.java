@@ -2,6 +2,7 @@ package org.example.repository.implement;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
+import org.example.entity.enumeration.PersonStatus;
 import org.example.entity.person.Teacher;
 import org.example.repository.TeacherRepository;
 import org.example.repository.base.BaseRepositoryImpl;
@@ -32,18 +33,44 @@ public class TeacherRepositoryImpl
 
 
     @Override
-    public List<Teacher> searchByNameOrTeacherCode(String keyword) {
+    public List<Teacher> searchByNameOrTeacherId(String keyword) {
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Teacher> query = cb.createQuery(Teacher.class);
 
         Root<Teacher> root = query.from(Teacher.class);
         Predicate byName = cb.like(root.get("name"), "%" + keyword + "%");
-        Predicate byCode = cb.like(root.get("teacherCode"), "%" + keyword + "%");
+        Predicate byCode = cb.like(root.get("teacher_id"), "%" + keyword + "%");
         query.select(root).where(cb.or(byName, byCode));
         return em.createQuery(query).getResultList();
     }
 
+    @Override
+    public List<Teacher> findByFirstName(String firstName) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Teacher> cq = cb.createQuery(Teacher.class);
+        Root<Teacher> teacher = cq.from(Teacher.class);
+        cq.where(cb.equal(teacher.get("firstName"), firstName));
+        return em.createQuery(cq).getResultList();
+    }
+
+    @Override
+    public List<Teacher> findByLastName(String lastName) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Teacher> cq = cb.createQuery(Teacher.class);
+        Root<Teacher> teacher = cq.from(Teacher.class);
+        cq.where(cb.equal(teacher.get("lastName"), lastName));
+        return em.createQuery(cq).getResultList();
+    }
+
+    @Override
+    public List<Teacher> findByStatus(PersonStatus status) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Teacher> cq = cb.createQuery(Teacher.class);
+        Root<Teacher> teacher = cq.from(Teacher.class);
+        cq.where(cb.equal(teacher.get("status"), status));
+        return em.createQuery(cq).getResultList();
+    }
 
 
 }
