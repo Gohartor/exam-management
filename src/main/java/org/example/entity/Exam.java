@@ -13,7 +13,6 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Exam extends BaseEntity {
 
 
@@ -27,4 +26,5 @@ public class Exam extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     private int duration ;
+
 }

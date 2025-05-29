@@ -1,5 +1,8 @@
 package org.example.service.impl;
 
+import org.example.entity.Course;
+import org.example.entity.Exam;
+import org.example.entity.Question;
 import org.example.entity.person.Teacher;
 import org.example.repository.TeacherRepository;
 import org.example.service.TeacherService;
@@ -23,5 +26,35 @@ public class TeacherServiceImpl
     @Override
     public List<Teacher> searchByNameOrCode(String keyword) {
         return repository.searchByNameOrTeacherCode(keyword);
+    }
+
+    @Override
+    public List<Course> getCourses(Long teacherId) {
+        return List.of();
+    }
+
+    @Override
+    public List<Exam> getExams(Long teacherId) {
+        return List.of();
+    }
+
+    @Override
+    public void createExam(Long teacherId, Long courseId, Exam exam) {
+
+    }
+
+    @Override
+    public void addQuestionToExam(Long examId, Question question) {
+
+    }
+
+    @Override
+    public List<Question> getAllQuestions(Long teacherId) {
+        return List.of();
+    }
+
+    @Override
+    public List<Exam> getExamsOfCourse(Long courseId) {
+        return List.of();
     }
 }

@@ -13,7 +13,6 @@ import org.example.entity.base.BaseEntity;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @MappedSuperclass
 public class Person extends BaseEntity {
 

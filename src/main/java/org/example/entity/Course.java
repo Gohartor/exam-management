@@ -16,7 +16,6 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Course extends BaseEntity {
 
     @NotBlank

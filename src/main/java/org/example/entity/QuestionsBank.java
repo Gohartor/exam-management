@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class QuestionsBank extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL)

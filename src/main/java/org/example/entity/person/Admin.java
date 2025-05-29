@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
 public class Admin extends Person {
 
 

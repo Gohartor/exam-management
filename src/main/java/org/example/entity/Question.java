@@ -15,7 +15,6 @@ import java.util.List;
 @Getter
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
 public class Question extends BaseEntity {
 
@@ -29,11 +28,18 @@ public class Question extends BaseEntity {
     @NotBlank
     private int score;
 
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Option> options;
+
 
     @Enumerated(EnumType.STRING)
     @NotNull
     private QuestionType questionType;
+
+
+    @ManyToOne
+    @JoinColumn(name = "exam_id")
+    private Exam exam;
 
 }

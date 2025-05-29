@@ -8,13 +8,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.example.entity.base.BaseEntity;
 
-@Entity
+@Entity (name = "options")
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Option extends BaseEntity {
 
     @NotBlank

@@ -15,8 +15,7 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-@NoArgsConstructor
-@RequiredArgsConstructor
+
 public class Student extends Person {
 
     @ManyToMany
