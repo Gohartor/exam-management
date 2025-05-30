@@ -9,17 +9,24 @@ import org.example.entity.enumeration.PersonStatus;
 import org.example.entity.person.Student;
 import org.example.entity.person.Teacher;
 import org.example.repository.TeacherRepository;
+import org.example.service.CourseService;
 import org.example.service.TeacherService;
 import org.example.service.base.BaseServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 public class TeacherServiceImpl
         extends BaseServiceImpl<Teacher, Long, TeacherRepository>
         implements TeacherService {
 
-    public TeacherServiceImpl(TeacherRepository repository) {
+    private final CourseService courseService;
+    private final TeacherService teacherService;
+
+    public TeacherServiceImpl(TeacherRepository repository, CourseService courseService, TeacherService teacherService) {
         super(repository);
+        this.courseService = courseService;
+        this.teacherService = teacherService;
     }
 
     @Override
@@ -68,8 +75,14 @@ public class TeacherServiceImpl
 
     @Override
     public List<Course> getCourses(Long teacherId) {
+        Optional<Teacher> teacherOpt = teacherService.findById(teacherId);
+        if (teacherOpt.isPresent()) {
+            return courseService.findByTeacher(teacherOpt.get());
+        }
         return List.of();
     }
+
+
 
     @Override
     public List<Exam> getExams(Long teacherId) {
@@ -95,4 +108,6 @@ public class TeacherServiceImpl
     public List<Exam> getExamsOfCourse(Long courseId) {
         return List.of();
     }
+
+
 }

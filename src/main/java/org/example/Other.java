@@ -11,8 +11,7 @@ import org.example.entity.person.Student;
 import org.example.entity.person.Teacher;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Other {
     public static void main(String[] args) {
@@ -103,5 +102,7 @@ public class Other {
 
 
         em.getTransaction().commit();
+
+
     }
 }

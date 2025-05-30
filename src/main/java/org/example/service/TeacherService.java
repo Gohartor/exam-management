@@ -24,12 +24,13 @@ public interface TeacherService extends BaseService<Teacher, Long> {
 
     List<Teacher> findByLastName(String lastName);
 
+    List<Course> getCourses(Long teacherId);
 
     List<Teacher> searchByNameOrCode(String keyword);
 
     void register(String firstName, String lastName, String userName, String password);
 
-    List<Course> getCourses(Long teacherId);
+
 
     List<Exam> getExams(Long teacherId);
 
@@ -37,7 +38,7 @@ public interface TeacherService extends BaseService<Teacher, Long> {
 
     void addQuestionToExam(Long examId, Question question);
 
-    List<Question> getAllQuestions(Long teacherId); // بانک سوالات
+    List<Question> getAllQuestions(Long teacherId);
 
     List<Exam> getExamsOfCourse(Long courseId);
 }

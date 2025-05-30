@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.entity.Course;
 import org.example.entity.enumeration.PersonStatus;
 import org.example.entity.person.Admin;
 import org.example.entity.person.Student;
@@ -43,15 +44,22 @@ public interface AdminService
 
     List<Teacher> findTeachersByLastName(String lastName);
 
-    void addTeacherToCourse(Long courseId, Long teacherId);
+    List<Course> getAllCourses();
+
+    Course addCourse(Course course);
+
+    void addTeacherToCourse(Long courseId, Teacher teacher);
+
+    void addStudentToCourse(Long courseId, Student student);
+
+    void removeStudentFromCourse(Long courseId, Student student);
 
     void removeTeacherFromCourse(Long courseId, Long teacherId);
 
-    void addStudentToCourse(Long courseId, Long studentId);
+    void changeCourseTeacher(Long courseId, Teacher teacher);
 
-    void removeStudentFromCourse(Long courseId, Long studentId);
+    List<Student> getCourseStudents(Long courseId);
 
-    List<Teacher> getTeachersOfCourse(Long courseId);
+    Teacher getCourseTeacher(Long courseId);
 
-    List<Student> getStudentsOfCourse(Long courseId);
 }

@@ -2,7 +2,9 @@ package org.example.repository.implement;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
+import org.example.entity.Course;
 import org.example.entity.Exam;
+import org.example.entity.person.Teacher;
 import org.example.repository.ExamRepository;
 import org.example.repository.base.BaseRepositoryImpl;
 
@@ -67,4 +69,25 @@ implements ExamRepository {
 
         return em.createQuery(query).getResultList();
     }
+
+
+
+    public List<Exam> findByCourse(Course course) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Exam> cq = cb.createQuery(Exam.class);
+        Root<Exam> root = cq.from(Exam.class);
+        cq.select(root).where(cb.equal(root.get("course"), course));
+        return em.createQuery(cq).getResultList();
+    }
+
+    @Override
+     public List<Exam> findByCourseAndTeacher(Course course, Teacher teacher) {
+         CriteriaBuilder cb = em.getCriteriaBuilder();
+         CriteriaQuery<Exam> cq = cb.createQuery(Exam.class);
+         Root<Exam> root = cq.from(Exam.class);
+         Predicate coursePredicate = cb.equal(root.get("course"), course);
+         Predicate creatorPredicate = cb.equal(root.get("teacher"), teacher);
+         cq.select(root).where(cb.and(coursePredicate, creatorPredicate));
+         return em.createQuery(cq).getResultList();
+     }
 }

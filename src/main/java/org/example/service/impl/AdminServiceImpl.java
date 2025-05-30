@@ -2,12 +2,14 @@ package org.example.service.impl;
 
 import jakarta.persistence.EntityManager;
 import org.example.context.ApplicationContext;
+import org.example.entity.Course;
 import org.example.entity.enumeration.PersonStatus;
 import org.example.entity.person.Admin;
 import org.example.entity.person.Student;
 import org.example.entity.person.Teacher;
 import org.example.repository.AdminRepository;
 import org.example.service.AdminService;
+import org.example.service.CourseService;
 import org.example.service.StudentService;
 import org.example.service.TeacherService;
 import org.example.service.base.BaseServiceImpl;
@@ -20,12 +22,14 @@ public class AdminServiceImpl
 
     private final StudentService studentService;
     private final TeacherService teacherService;
+    private final CourseService courseService;
 
 
-    public AdminServiceImpl(AdminRepository repository, StudentService studentService, TeacherService teacherService) {
+    public AdminServiceImpl(AdminRepository repository, StudentService studentService, TeacherService teacherService, CourseService courseService) {
         super(repository);
         this.studentService = studentService;
         this.teacherService = teacherService;
+        this.courseService = courseService;
     }
 
 
@@ -193,34 +197,54 @@ public class AdminServiceImpl
         return teacherService.findByLastName(lastName);
     }
 
+    @Override
+    public List<Course> getAllCourses() {
+        return courseService.findAll();
+    }
 
     @Override
-    public void addTeacherToCourse(Long courseId, Long teacherId) {
+    public Course addCourse(Course course) {
+        return courseService.save(course);
+    }
 
+
+    @Override
+    public void addTeacherToCourse(Long courseId, Teacher teacher) {
+        courseService.assignTeacher(courseId, teacher);
+    }
+
+    @Override
+    public void addStudentToCourse(Long courseId, Student student) {
+        courseService.addStudent(courseId, student);
+    }
+
+    @Override
+    public void removeStudentFromCourse(Long courseId, Student student) {
+        courseService.removeStudent(courseId, student);
     }
 
     @Override
     public void removeTeacherFromCourse(Long courseId, Long teacherId) {
 
+        Course course = courseService.findById(courseId).orElse(null);
+        if (course != null && course.getTeacher() != null && course.getTeacher().getId().equals(teacherId)) {
+            course.setTeacher(null);
+            courseService.save(course);
+        }
     }
 
     @Override
-    public void addStudentToCourse(Long courseId, Long studentId) {
-
+    public void changeCourseTeacher(Long courseId, Teacher teacher) {
+        courseService.assignTeacher(courseId, teacher);
     }
 
     @Override
-    public void removeStudentFromCourse(Long courseId, Long studentId) {
-
+    public List<Student> getCourseStudents(Long courseId) {
+        return courseService.getStudents(courseId);
     }
 
     @Override
-    public List<Teacher> getTeachersOfCourse(Long courseId) {
-        return List.of();
-    }
-
-    @Override
-    public List<Student> getStudentsOfCourse(Long courseId) {
-        return List.of();
+    public Teacher getCourseTeacher(Long courseId) {
+        return courseService.getTeacher(courseId);
     }
 }
