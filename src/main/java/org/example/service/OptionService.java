@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface OptionService extends BaseService<Option, Long> {
     List<Option> findByQuestionId(Long questionId);
+
     List<Option> findCorrectOptionByQuestionId(Long questionId);
+
     List<Option> searchByText(String keyword);
 }

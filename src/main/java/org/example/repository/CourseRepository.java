@@ -7,7 +7,8 @@ import org.example.repository.base.BaseRepository;
 
 import java.util.List;
 
-public interface CourseRepository extends BaseRepository<Course, Long> {
+public interface CourseRepository
+        extends BaseRepository<Course, Long> {
 
     List<Course> findByTitle(String title);
 

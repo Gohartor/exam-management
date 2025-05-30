@@ -2,6 +2,7 @@ package org.example.repository.implement;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
+import org.example.entity.Exam;
 import org.example.entity.Question;
 import org.example.entity.enumeration.QuestionType;
 import org.example.repository.QuestionRepository;
@@ -62,6 +63,7 @@ public class QuestionRepositoryImpl
     }
 
 
+
     @Override
     public List<Question> findByQuestionType(String questionType) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -69,6 +71,17 @@ public class QuestionRepositoryImpl
         Root<Question> root = query.from(Question.class);
         query.select(root).where(cb.equal(root.get("qustionType"), QuestionType.valueOf(questionType)));
         return em.createQuery(query).getResultList();
+    }
+
+
+    @Override
+    public void assignQuestionsToExam(List<Long> questionIds, Long examId) {
+        Exam exam = em.find(Exam.class, examId);
+        for (Long qid : questionIds) {
+            Question question = em.find(Question.class, qid);
+            question.setExam(exam);
+            em.merge(question);
+        }
     }
 
 }

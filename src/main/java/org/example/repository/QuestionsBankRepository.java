@@ -13,4 +13,8 @@ public interface QuestionsBankRepository
     List<QuestionsBank> findByTeacherId(Long teacherId);
 
     List<QuestionsBank> searchByTitle(String keyword);
+
+    QuestionsBank findByCourseId(Long courseId);
+
+
 }

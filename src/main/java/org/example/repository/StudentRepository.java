@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import org.example.entity.Course;
 import org.example.entity.enumeration.PersonStatus;
 import org.example.entity.person.Student;
 import org.example.repository.base.BaseRepository;
@@ -21,4 +22,7 @@ public interface StudentRepository
     List<Student> findByFirstName(String firstName);
 
     List<Student> findByLastName(String lastName);
+
+    List<Course> findCoursesByStudentId(Long studentId);
+
 }

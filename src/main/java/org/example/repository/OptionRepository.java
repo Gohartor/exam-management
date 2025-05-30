@@ -13,4 +13,5 @@ public interface OptionRepository
     List<Option> findCorrectOptionsByQuestionId(Long questionId);
 
     List<Option> searchByText(String keyword);
+
 }

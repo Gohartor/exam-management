@@ -38,6 +38,8 @@ public class QuestionsBankRepositoryImpl
         return em.createQuery(query).getResultList();
     }
 
+
+
     @Override
     public List<QuestionsBank> searchByTitle(String keyword) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -45,5 +47,14 @@ public class QuestionsBankRepositoryImpl
         Root<QuestionsBank> root = query.from(QuestionsBank.class);
         query.select(root).where(cb.like(root.get("title"), "%" + keyword + "%"));
         return em.createQuery(query).getResultList();
+    }
+
+    @Override
+    public QuestionsBank findByCourseId(Long courseId) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<QuestionsBank> query = cb.createQuery(QuestionsBank.class);
+        Root<QuestionsBank> root = query.from(QuestionsBank.class);
+        query.select(root).where(cb.equal(root.get("course").get("id"), courseId));
+        return em.createQuery(query).getSingleResult();
     }
 }

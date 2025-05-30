@@ -18,4 +18,6 @@ public interface QuestionRepository
 
     List<Question> findByQuestionType(String questionType);
 
+    void assignQuestionsToExam(List<Long> questionIds, Long examId);
+
 }

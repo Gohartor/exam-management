@@ -29,4 +29,13 @@ public class QuestionsBankServiceImpl
     public List<QuestionsBank> searchByTitle(String keyword) {
         return repository.searchByTitle(keyword);
     }
+
+
+    @Override
+    public QuestionsBank findByCourseId(Long courseId) {
+        return repository.findByCourseId(courseId);
+    }
+
+
+
 }

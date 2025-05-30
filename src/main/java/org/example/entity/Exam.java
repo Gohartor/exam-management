@@ -31,4 +31,7 @@ public class Exam extends BaseEntity {
     @ManyToOne
     private Teacher teacher;
 
+    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+    private List<ExamQuestion> examQuestions;
+
 }

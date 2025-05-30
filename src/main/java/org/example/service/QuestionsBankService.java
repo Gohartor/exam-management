@@ -6,7 +6,13 @@ import org.example.service.base.BaseService;
 import java.util.List;
 
 public interface QuestionsBankService extends BaseService<QuestionsBank, Long> {
+
     QuestionsBank findWithQuestions(Long bankId);
+
     List<QuestionsBank> findByTeacherId(Long teacherId);
+
     List<QuestionsBank> searchByTitle(String keyword);
+
+    QuestionsBank findByCourseId(Long courseId);
+
 }

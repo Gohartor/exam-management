@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.*;
 import org.example.entity.base.BaseEntity;
 import org.example.entity.enumeration.QuestionType;
+import org.example.entity.person.Teacher;
 
 import java.util.List;
 
@@ -41,5 +42,18 @@ public class Question extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "exam_id")
     private Exam exam;
+
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+
+
+    @ManyToOne
+    @JoinColumn(name = "questions_bank_id")
+    private QuestionsBank questionsBank;
+
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<ExamQuestion> examQuestions;
 
 }

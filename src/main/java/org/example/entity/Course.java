@@ -37,4 +37,8 @@ public class Course extends BaseEntity {
     @ManyToMany(mappedBy = "courses")
     private List<Student> students;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "questions_bank_id")
+    private QuestionsBank questionsBank;
+
 }
