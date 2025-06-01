@@ -16,6 +16,12 @@ public interface AdminService
 
     List<Teacher> getAllTeachers();
 
+    List<Course> getAllCourses();
+
+    void addCourse(Course course);
+
+    void updateCourse(Course course);
+
     void approveTeacher(Long teacherId);
 
     void approveStudent(Long studentId);
@@ -43,10 +49,6 @@ public interface AdminService
     List<Teacher> findTeachersByFirstName(String firstName);
 
     List<Teacher> findTeachersByLastName(String lastName);
-
-    List<Course> getAllCourses();
-
-    Course addCourse(Course course);
 
     void addTeacherToCourse(Long courseId, Teacher teacher);
 

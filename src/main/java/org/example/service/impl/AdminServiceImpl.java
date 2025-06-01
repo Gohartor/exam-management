@@ -15,6 +15,7 @@ import org.example.service.TeacherService;
 import org.example.service.base.BaseServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AdminServiceImpl
         extends BaseServiceImpl<Admin, Long, AdminRepository>
@@ -203,8 +204,8 @@ public class AdminServiceImpl
     }
 
     @Override
-    public Course addCourse(Course course) {
-        return courseService.save(course);
+    public void addCourse(Course course) {
+        courseService.save(course);
     }
 
 
@@ -247,4 +248,24 @@ public class AdminServiceImpl
     public Teacher getCourseTeacher(Long courseId) {
         return courseService.getTeacher(courseId);
     }
+
+
+    @Override
+    public void updateCourse(Course course) {
+        Course find = courseService.findById(course.getId()).orElse(null);
+        if (find != null) {
+
+            find.setTitle(course.getTitle());
+            find.setTeacher(course.getTeacher());
+            find.setExam(course.getExam());
+            find.setStudents(course.getStudents());
+            find.setQuestionsBank(course.getQuestionsBank());
+            find.setStartTime(course.getStartTime());
+            find.setEndTime(course.getEndTime());
+
+        }
+    }
+
+
+
 }

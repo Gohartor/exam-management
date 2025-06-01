@@ -28,8 +28,7 @@ public class ConsoleMenuApplication {
                     break;
                 case "0":
                     System.out.println("exiting the application...");
-                    System.exit(0);
-                    break;
+                    return;
                 default:
                     System.out.println("invalid selection! please try again.");
             }
