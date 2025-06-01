@@ -31,14 +31,4 @@ public interface TeacherService extends BaseService<Teacher, Long> {
     void register(String firstName, String lastName, String userName, String password);
 
 
-
-    List<Exam> getExams(Long teacherId);
-
-    void createExam(Long teacherId, Long courseId, Exam exam);
-
-    void addQuestionToExam(Long examId, Question question);
-
-    List<Question> getAllQuestions(Long teacherId);
-
-    List<Exam> getExamsOfCourse(Long courseId);
 }

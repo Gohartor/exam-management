@@ -12,6 +12,8 @@ import org.example.entity.person.Student;
 import org.example.entity.person.Teacher;
 import org.example.repository.*;
 import org.example.repository.implement.*;
+import org.example.service.*;
+import org.example.service.impl.*;
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 
 import java.util.Objects;
@@ -71,7 +73,7 @@ public class ApplicationContext {
 
     private AdminRepository adminRepository;
 
-    public AdminRepository getProvinceRepository() {
+    public AdminRepository getAdminRepository() {
         if (Objects.isNull(adminRepository)) {
             adminRepository = new AdminRepositoryImpl(getEntityManager(), Admin.class);
         }
@@ -149,5 +151,80 @@ public class ApplicationContext {
         return teacherRepository;
     }
 
+
+    private AdminService adminService;
+
+    public AdminService getAdminService() {
+        if (Objects.isNull(adminService)) {
+            adminService = new AdminServiceImpl(getAdminRepository(), getStudentService(), getTeacherService(), getCourseService());
+        }
+        return adminService;
+    }
+
+    private CourseService courseService;
+
+    public CourseService getCourseService() {
+        if (Objects.isNull(courseService)) {
+            courseService = new CourseServiceImpl(getCourseRepository(), getTeacherService());
+        }
+        return courseService;
+    }
+
+    private ExamService examService;
+
+    public ExamService getExamService() {
+        if (Objects.isNull(examService)) {
+            examService = new ExamServiceImpl(getExamRepository(),getCourseService(), getTeacherService());
+        }
+        return examService;
+    }
+
+
+    private OptionService optionService;
+
+    public OptionService getOptionService() {
+        if (Objects.isNull(optionService)) {
+            optionService = new OptionServiceImpl(getOptionRepository());
+        }
+        return optionService;
+    }
+
+
+    private QuestionService questionService;
+
+    public QuestionService getQuestionService() {
+        if (Objects.isNull(questionService)) {
+            questionService = new QuestionServiceImpl(getQuestionRepository(), getExamService(), getQuestionsBankService());
+        }
+        return questionService;
+    }
+
+    private QuestionsBankService questionsBankService;
+
+    public QuestionsBankService getQuestionsBankService() {
+        if (Objects.isNull(questionsBankService)) {
+            questionsBankService = new QuestionsBankServiceImpl(getQuestionBankRepository());
+        }
+        return questionsBankService;
+    }
+
+
+    private StudentService studentService;
+
+    public StudentService getStudentService() {
+        if (Objects.isNull(studentService)) {
+            studentService = new StudentServiceImpl(getStudentRepository());
+        }
+        return studentService;
+    }
+
+    private TeacherService teacherService;
+
+    public TeacherService getTeacherService() {
+        if (Objects.isNull(teacherService)) {
+            teacherService = new TeacherServiceImpl(getTeacherRepository(), getCourseService());
+        }
+        return teacherService;
+    }
 
 }

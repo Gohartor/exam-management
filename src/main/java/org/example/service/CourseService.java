@@ -20,6 +20,7 @@ public interface CourseService
 
     void addStudent(Long courseId, Student student);
 
+
     void removeStudent(Long courseId, Student student);
 
     void changeTeacher(Long courseId, Teacher teacher);

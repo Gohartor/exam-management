@@ -21,12 +21,12 @@ public class TeacherServiceImpl
         implements TeacherService {
 
     private final CourseService courseService;
-    private final TeacherService teacherService;
 
-    public TeacherServiceImpl(TeacherRepository repository, CourseService courseService, TeacherService teacherService) {
+
+    public TeacherServiceImpl(TeacherRepository repository, CourseService courseService) {
         super(repository);
         this.courseService = courseService;
-        this.teacherService = teacherService;
+
     }
 
     @Override
@@ -75,39 +75,14 @@ public class TeacherServiceImpl
 
     @Override
     public List<Course> getCourses(Long teacherId) {
-        Optional<Teacher> teacherOpt = teacherService.findById(teacherId);
+        Optional<Teacher> teacherOpt = repository.findById(teacherId);
         if (teacherOpt.isPresent()) {
-            return courseService.findByTeacher(teacherOpt.get());
+            return courseService.getCoursesByTeacher(teacherOpt.get().getId());
         }
         return List.of();
     }
 
 
-
-    @Override
-    public List<Exam> getExams(Long teacherId) {
-        return List.of();
-    }
-
-    @Override
-    public void createExam(Long teacherId, Long courseId, Exam exam) {
-
-    }
-
-    @Override
-    public void addQuestionToExam(Long examId, Question question) {
-
-    }
-
-    @Override
-    public List<Question> getAllQuestions(Long teacherId) {
-        return List.of();
-    }
-
-    @Override
-    public List<Exam> getExamsOfCourse(Long courseId) {
-        return List.of();
-    }
 
 
 }
