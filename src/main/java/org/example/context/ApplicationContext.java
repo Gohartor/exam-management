@@ -141,7 +141,6 @@ public class ApplicationContext {
     }
 
 
-
     private TeacherRepository teacherRepository;
 
     public TeacherRepository getTeacherRepository() {
@@ -174,7 +173,7 @@ public class ApplicationContext {
 
     public ExamService getExamService() {
         if (Objects.isNull(examService)) {
-            examService = new ExamServiceImpl(getExamRepository(),getCourseService(), getTeacherService());
+            examService = new ExamServiceImpl(getExamRepository(), getCourseService(), getTeacherService());
         }
         return examService;
     }
@@ -225,6 +224,63 @@ public class ApplicationContext {
             teacherService = new TeacherServiceImpl(getTeacherRepository(), getCourseService());
         }
         return teacherService;
+    }
+
+    private StudentExamRepository studentExamRepository;
+
+    public StudentExamRepository getStudentExamRepository() {
+        if (Objects.isNull(studentExamRepository)) {
+            studentExamRepository = new StudentExamRepositoryImpl(getEntityManager(), StudentExam.class);
+        }
+        return studentExamRepository;
+    }
+
+    private StudentExamService studentExamService;
+
+    public StudentExamService getStudentExamService() {
+        if (Objects.isNull(studentExamService)) {
+            studentExamService = new StudentExamServiceImpl(getStudentExamRepository(),
+                    getExamService(),
+                    getStudentService(),
+                    getStudentAnswerService(),
+                    getExamQuestionService(),
+                    getOptionService()
+            );
+        }
+        return studentExamService;
+    }
+
+    private StudentAnswerRepository studentAnswerRepository;
+    public StudentAnswerRepository getStudentAnswerRepository() {
+        if (Objects.isNull(studentAnswerRepository)) {
+            studentAnswerRepository = new StudentAnswerRepositoryImpl(getEntityManager(), StudentAnswer.class);
+        }
+        return studentAnswerRepository;
+    }
+
+    private StudentAnswerService studentAnswerService;
+    public StudentAnswerService getStudentAnswerService() {
+        if (Objects.isNull(studentAnswerService)) {
+            studentAnswerService = new StudentAnswerServiceImpl(getStudentAnswerRepository(), getStudentExamService(), getQuestionService());
+        }
+        return studentAnswerService;
+    }
+
+
+    private ExamQuestionRepository examQuestionRepository;
+    public ExamQuestionRepository getExamQuestionRepository() {
+        if (Objects.isNull(examQuestionRepository)) {
+            examQuestionRepository = new ExamQuestionRepositoryImpl(getEntityManager(), ExamQuestion.class);
+        }
+        return examQuestionRepository;
+    }
+
+    private ExamQuestionService examQuestionService;
+    public ExamQuestionService getExamQuestionService() {
+        if (Objects.isNull(examQuestionService)) {
+            examQuestionService = new ExamQuestionServiceImpl(getExamQuestionRepository());
+        }
+        return examQuestionService;
     }
 
 }

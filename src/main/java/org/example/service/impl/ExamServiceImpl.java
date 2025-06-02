@@ -4,16 +4,12 @@ import org.example.entity.Course;
 import org.example.entity.Exam;
 import org.example.entity.person.Teacher;
 import org.example.exeption.AccessDenied;
-import org.example.repository.CourseRepository;
 import org.example.repository.ExamRepository;
-import org.example.repository.TeacherRepository;
 import org.example.service.CourseService;
 import org.example.service.ExamService;
 import org.example.service.TeacherService;
 import org.example.service.base.BaseServiceImpl;
 
-import java.nio.file.AccessDeniedException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,7 +69,7 @@ public class ExamServiceImpl
     }
 
     @Override
-    public Exam createExam(Long courseId, Long teacherId, int duration) {
+    public void createExam(Long courseId, Long teacherId, int duration) {
         Course course = courseService.findById(courseId).orElseThrow();
         Teacher teacher = teacherService.findById(teacherId).orElseThrow();
         Exam exam = new Exam();
@@ -81,7 +77,7 @@ public class ExamServiceImpl
         exam.setTeacher(teacher);
 
         exam.setDuration(duration);
-        return repository.save(exam);
+        repository.save(exam);
     }
 
     @Override
