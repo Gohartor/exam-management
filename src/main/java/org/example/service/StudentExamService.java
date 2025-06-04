@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface StudentExamService extends BaseService<StudentExam, Long> {
+
     List<StudentExam> findByStudentId(Long studentId);
 
     StudentExam findByStudentIdAndExamId(Long studentId, Long examId);

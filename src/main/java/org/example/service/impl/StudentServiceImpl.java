@@ -13,6 +13,7 @@ import org.example.service.StudentService;
 import org.example.service.base.BaseServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StudentServiceImpl
         extends BaseServiceImpl<Student, Long, StudentRepository>
@@ -102,5 +103,22 @@ public class StudentServiceImpl
     @Override
     public double getExamResult(Long studentId, Long examId) {
         return 0;
+    }
+
+
+    public Student login(String username, String password) {
+        Optional<Student> studentOpt = repository.findByUserName(username);
+        if (studentOpt.isPresent()) {
+            Student student = studentOpt.get();
+            if (student.getPassword().equals(password)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Optional<Student> findByUserName(String userName) {
+        return repository.findByUserName(userName);
     }
 }

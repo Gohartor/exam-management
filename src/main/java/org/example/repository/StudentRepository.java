@@ -6,6 +6,7 @@ import org.example.entity.person.Student;
 import org.example.repository.base.BaseRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StudentRepository
         extends BaseRepository<Student, Long> {
@@ -24,5 +25,7 @@ public interface StudentRepository
     List<Student> findByLastName(String lastName);
 
     List<Course> findCoursesByStudentId(Long studentId);
+
+    Optional<Student> findByUserName(String userName);
 
 }

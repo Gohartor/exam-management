@@ -15,11 +15,6 @@ import java.time.LocalDateTime;
 @Table(name = "student_exam")
 public class StudentExam extends BaseEntity {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;

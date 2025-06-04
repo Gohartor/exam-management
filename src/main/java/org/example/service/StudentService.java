@@ -8,6 +8,7 @@ import org.example.entity.person.Student;
 import org.example.service.base.BaseService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StudentService extends BaseService<Student, Long> {
 
@@ -34,5 +35,9 @@ public interface StudentService extends BaseService<Student, Long> {
     void answerQuestion(Long studentId, Long examId, Long questionId, Option answer);
 
     double getExamResult(Long studentId, Long examId);
+
+    Student login(String username, String password);
+
+    Optional<Student> findByUserName(String userName);
 
 }

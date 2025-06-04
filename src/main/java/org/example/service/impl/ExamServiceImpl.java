@@ -70,6 +70,8 @@ public class ExamServiceImpl
 
     @Override
     public void createExam(Long courseId, Long teacherId, int duration) {
+
+        //examDto -> courseID, teacherId, duration -> @notnull, all condition by annotation
         Course course = courseService.findById(courseId).orElseThrow();
         Teacher teacher = teacherService.findById(teacherId).orElseThrow();
         Exam exam = new Exam();

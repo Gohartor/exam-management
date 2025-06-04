@@ -60,6 +60,8 @@ public class TeacherServiceImpl
     }
 
     public void register(String firstName, String lastName, String userName, String password) {
+
+        //remove em in service
         EntityManager em = ApplicationContext.getInstance().getEntityManager();
         Student student = new Student();
         student.setFirstName(firstName);
@@ -68,9 +70,11 @@ public class TeacherServiceImpl
         student.setPassword(password);
         student.setStatus(PersonStatus.PENDING);
 
-        em.getTransaction().begin();
-        em.persist(student);
-        em.getTransaction().commit();
+        repository.save(student);
+
+//        em.getTransaction().begin();
+//        em.persist(student);
+//        em.getTransaction().commit();
     }
 
     @Override
@@ -82,7 +86,21 @@ public class TeacherServiceImpl
         return List.of();
     }
 
+    public Teacher login(String username, String password) {
+        Optional<Teacher> teacherOpt = repository.findByUserName(username);
+        if (teacherOpt.isPresent()) {
+            Teacher teacher = teacherOpt.get();
+            if (teacher.getPassword().equals(password)) {
+                return teacher;
+            }
+        }
+        return null;
+    }
 
+    @Override
+    public Optional<Teacher> findByUserName(String userName) {
+        return repository.findByUserName(userName);
+    }
 
 
 }

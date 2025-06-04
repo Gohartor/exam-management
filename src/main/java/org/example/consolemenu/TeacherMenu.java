@@ -11,8 +11,6 @@ import org.example.service.ExamService;
 import org.example.service.OptionService;
 import org.example.service.QuestionService;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 

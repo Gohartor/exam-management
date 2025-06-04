@@ -11,6 +11,7 @@ import org.example.entity.person.Teacher;
 import org.example.service.base.BaseService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TeacherService extends BaseService<Teacher, Long> {
 
@@ -29,6 +30,10 @@ public interface TeacherService extends BaseService<Teacher, Long> {
     List<Teacher> searchByNameOrCode(String keyword);
 
     void register(String firstName, String lastName, String userName, String password);
+
+    Teacher login(String username, String password);
+
+    Optional<Teacher> findByUserName(String userName);
 
 
 }

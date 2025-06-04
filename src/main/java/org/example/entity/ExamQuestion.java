@@ -12,10 +12,6 @@ import org.example.entity.base.BaseEntity;
 @Table(name = "exam_question")
 public class ExamQuestion extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne
     @JoinColumn(name = "exam_id")
     private Exam exam;
